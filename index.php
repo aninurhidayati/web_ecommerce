@@ -1,10 +1,18 @@
+<?php
+  /* ini cara menampilkan output */
+  //echo "Hello PHP";
+  /* ini untuk mengecek versi dari PHP */
+  //phpinfo();
+  /*cara membuat variabel -> $namavariabel = "value dari variabel";  */
+  $nama_toko = "Ase Distro";  
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ani's Distro</title>
+    <title>ASE's Distro</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -19,7 +27,7 @@
     <link rel="stylesheet" href="assets/styles.css" />
   </head>
   <body>
-    <!-- navbar -->
+    <!-- start navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bgnav" style="color: white !important">
       <div class="container pe-5 ps-5">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fontnav text-white">
@@ -43,20 +51,23 @@
         </div>
       </div>
     </nav>
-    <!-- header banner -->
+    <!-- end navbar -->
+    <!-- start header banner -->
     <section id="header">
       <div class="container ps-0">
         <img src="assets/img/banner.jpg" class="banner" />
         <div class="judulbanner">
-          <span class="subtitle1">ASE Distro</span> <br />
+          <span class="subtitle1"><?php echo $nama_toko; ?></span> <br />
           <span class="subtitle2">Yuk belanjaa...!!!</span>
         </div>
       </div>
     </section>
+     <!-- end header banner -->
     <!-- konten -->
     <section id="konten ">
       <div class="container pb-5">
         <div class="row">
+          <!-- start - left column -->
           <div class="col-md-3 pt-4">
             <div class="kategori-title">Kategori Produk</div>
             <div class="subkategori" id="subkategori">
@@ -64,48 +75,19 @@
               <li><a href='#'>SEPATU</a></li>
             </div>
           </div>
+          <!-- end - left column -->
+          <!-- start - main content -->
           <div class="col-md-9 pt-4">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="card">
-                  <img src="assets/img/baju1.jpg" class="card-img-top" alt="..." />
-                  <div class="card-body text-center bgcardbody">
-                    <h5 class="card-title">Sweater 001 - white</h5>
-                    <h6 class="harga">Rp. 100,000</h6>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item btndetail">
-                      <a href="detailproduk.html" target="_blank" class="text-white">Detail</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="card">
-                  <img src="assets/img/baju2.jpg" class="card-img-top" alt="..." />
-                  <div class="card-body text-center bgcardbody">
-                    <h5 class="card-title">Hoodie All Size</h5>
-                    <h6 class="harga">Rp. 200,000</h6>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item btndetail">Detail</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="card">
-                  <img src="assets/img/baju3.jpg" class="card-img-top" alt="..." />
-                  <div class="card-body text-center bgcardbody">
-                    <h5 class="card-title">T-Shirt Red</h5>
-                    <h6 class="harga">Rp. 150,000</h6>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item btndetail">Detail</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <?php
+              //menyisipkan file eksternal
+              include_once("main.php");
+              //cara mendapatkan value dari variabel yang dikirim via link/url : $_GET['namavariabel']
+              $pagenya = $_GET['page'].".php";
+              include_once($pagenya);
+
+            ?>
           </div>
+          <!-- end - main content -->
         </div>
       </div>
     </section>
