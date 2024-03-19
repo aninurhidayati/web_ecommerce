@@ -30,19 +30,23 @@
     <!-- start navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bgnav" style="color: white !important">
       <div class="container pe-5 ps-5">
+        <?php
+        //contoh variabel array
+        $menutop = array("HOME", "PRODUCT");
+        ?>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fontnav text-white">
           <li class="nav-item">
-            <a href="index.html" class="nav-link">HOME</a>
+            <a href="?" class="nav-link"><?php echo $menutop[0]; ?></a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">PRODUCT</a>
+            <a href="?page=allproduct" class="nav-link"><?php echo $menutop[1]; ?></a>
           </li>
         </ul>
 
         <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fontnav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="daftarmember.html">Daftar Member</a>
+              <a class="nav-link active" aria-current="page" href="?page=registrasi">Daftar Member</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
@@ -53,6 +57,10 @@
     </nav>
     <!-- end navbar -->
     <!-- start header banner -->
+    <?php
+    //tulis if
+    if(!isset($_GET['page'])){
+    ?>
     <section id="header">
       <div class="container ps-0">
         <img src="assets/img/banner.jpg" class="banner" />
@@ -62,28 +70,46 @@
         </div>
       </div>
     </section>
+    <?php  } //penutup if     ?>
      <!-- end header banner -->
     <!-- konten -->
     <section id="konten ">
       <div class="container pb-5">
         <div class="row">
           <!-- start - left column -->
+          <?php 
+          //jika ditemukan variabel page pada link dan variabel page tidak sama dengan allproduct
+          if(!isset($_GET['page']) || (isset($_GET['page']) && $_GET['page'] != "allproduct")){ ?>
           <div class="col-md-3 pt-4">
             <div class="kategori-title">Kategori Produk</div>
             <div class="subkategori" id="subkategori">
-              <li><a href='#'>SWEATER</a></li>
-              <li><a href='#'>SEPATU</a></li>
+              <?php
+              //contoh associate array
+              $listcategory = array(
+                array("idkategori" => 1, "nama" => "SWEATER", "link" => "produkategori"),
+                array("idkategori" => 2, "nama" => "SHOES", "link" => "produkategori")
+              );
+              foreach($listcategory as $ct ){
+                  echo '<li><a href="?page=kategoriproduk">'.$ct["nama"].'</a></li>';
+              }
+              ?>
+              
             </div>
           </div>
+          <?php } ?>
           <!-- end - left column -->
           <!-- start - main content -->
           <div class="col-md-9 pt-4">
             <?php
+            if(!isset($_GET['page'])){
               //menyisipkan file eksternal
-              include_once("main.php");
-              //cara mendapatkan value dari variabel yang dikirim via link/url : $_GET['namavariabel']
+              include_once("main.php");             
+            }
+            else{
+               //cara mendapatkan value dari variabel yang dikirim via link/url : $_GET['namavariabel']
               $pagenya = $_GET['page'].".php";
-              include_once($pagenya);
+              include_once($pagenya); 
+            }
 
             ?>
           </div>
