@@ -1,3 +1,6 @@
+<?php
+require_once("../config/koneksidb.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,22 +20,22 @@
 <body class="bg-primary-subtle">
     <div class="container d-flex flex-column align-items-center py-5 ptop100">
         <h2 id="judul">Halaman Login</h2>
-        <form action="#" method="post" class="box">
+        <form action="ceklogin.php" method="post" class="box">
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
               <!-- <img id="gambar" > -->
-              <input type="text" class="form-control" id="username" aria-describedby="emailHelp" 
+              <input type="text" class="form-control" name="inusername" id="username" aria-describedby="emailHelp" 
                 oninvalid="this.setCustomValidity('Username belum diisi')" required
                 oninput="setCustomValidity('')" 
                 >
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" required
+              <input type="password" class="form-control" name="inpassword" id="password" required
                 oninvalid="this.setCustomValidity('Password belum diisi')"
                 oninput="setCustomValidity('')">
             </div>
-            <button type="button" class="btn btn-primary form-control" onclick="ceklogin()">
+            <button type="submit" class="btn btn-primary form-control" >
               <i class="bi bi-lock-fill"></i> Login
             </button>
           </form>
