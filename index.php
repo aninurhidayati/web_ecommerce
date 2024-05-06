@@ -145,8 +145,8 @@
             <h5 class="modal-title" id="exampleModalLabel">Form Login</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            <form class="bg-light p-4 m-5">
+          <form class="bg-light p-4 m-5" method="POST" action="member/ceklogin.php">
+          <div class="modal-body">            
               <div class="alert alert-danger" role="alert" id="alert" style="display: none"></div>
               <div class="alert alert-success" role="alert" id="alertok" style="display: none"></div>
               <div id="judul" class="mt-3"></div>
@@ -156,14 +156,14 @@
               </div>
               <div class="mb-4">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="logpassword" />
-              </div>
-            </form>
+                <input type="password" class="form-control" id="logpassword" name="logpassword" />
+              </div>            
           </div>
           <div class="modal-footer">
             <button type="button" id="btnbatal" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-            <button type="button" id="btnkeluar" class="btn btn-primary" onclick="ceklogin()">Login</button>
+            <button type="submit" id="btnlogin" class="btn btn-primary" >Login</button>
           </div>
+          </form>
         </div>
       </div>
     </div>

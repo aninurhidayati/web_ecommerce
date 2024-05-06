@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if(isset($_SESSION['userlogin'])){
+if(isset($_SESSION['email_mblogin'])){
     require_once("../config/koneksidb.php"); 
     require_once("../config/general.php");
 ?>
@@ -22,16 +22,8 @@ if(isset($_SESSION['userlogin'])){
                 <h4 class="pb-3 text-white text-center border-bottom"><?php  echo $company; ?> </h4>
                 <!-- dari bootstrap, list group -->
                 <ul class="list-group list-group-flush" id="listmenu">
-                <?php
-                    $statement_sql = $cn_mysql->prepare("select * from mst_menus where isactive=1");
-                    $statement_sql->execute();
-                    $result = $statement_sql->get_result();
-                    while($d = $result->fetch_assoc())
-                    {
-                        echo '<li class="list-group-item"><a href="'.$d['menu_link'].'">'.$d['menu_name'].'</li>';
-                    }
-                    ?>
                     
+                    <li class="list-group-item">Menu-01</li>
                     <li class="list-group-item">
                         <i class="bi bi-box-arrow-left"></i>
                         <a href="logout.php">LOGOUT</a>
@@ -39,10 +31,9 @@ if(isset($_SESSION['userlogin'])){
                 </ul>
             </div>
             <div class="col-md-10 p-4">
-                <?php if(!isset($_GET['modul'])){ ?>
                 <h5 id="title">
                     <?php title(); ?>
-                    <span style="float: right;">Welcome: <?php echo $_SESSION['loginname']; ?></span>
+                    <span style="float: right;">Welcome: <?php echo $_SESSION['email_mblogin']; ?></span>
                 </h5>
                 <hr>
                 <h6><i id="subtitle"></i></h6>
@@ -57,18 +48,6 @@ if(isset($_SESSION['userlogin'])){
                     </ul>
                     ";
                 ?>
-                <?php }  
-                else { 
-                    echo '
-                    <h5 id="title">
-                        Modul: '.title($_GET['modul']).'
-                        <span style="float: right;">Welcome: '.$_SESSION['loginname'].'</span>
-                    </h5>
-                    <hr>
-                    ';
-                    include_once("modul/".$_GET['modul'].".php");
-                }
-                ?>
             </div>
         </div>
     </div>
@@ -81,6 +60,6 @@ if(isset($_SESSION['userlogin'])){
 } 
 else {
     echo "<script>alert('Silahkan Login Terlebih Dahulu!');</script>";
-    echo "<meta http-equiv=\"REFRESH\" content=\"0;url=index.php\">";
+    echo "<meta http-equiv=\"REFRESH\" content=\"0;url=../index.php\">";
 }
 ?>
