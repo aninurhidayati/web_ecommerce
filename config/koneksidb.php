@@ -1,4 +1,5 @@
 <?php 
+date_default_timezone_set("Asia/Jakarta"); //tambahkan kode ini pada file koneksidb
 $hostname  = "localhost";
 $database = "db_ecomm";
 $user_db = "root";

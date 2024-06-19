@@ -47,7 +47,7 @@
         $keyid = 0; 
         
     }
-    else if($_GET['action']=="edit" || $_GET['action']=="delete"){
+    else if($_GET['action']=="edit"){
         //buat variabel untuk value form disini
        $proses = $_GET['action'];//variabel ini digunakan untuk membedakan ketika memproses ubah data
        $keyid = $_GET['id']; //menampung value dari variabel id yg di url
@@ -59,17 +59,24 @@
         $nama = $data['category_name'];
     }
     else if($_GET['action']=="delete"){
-        header("Location: modul/KategoriProses.php?action=delete&id=".$_GET['id']."");
+        header("Location: modul/KategoriProses.php?proses=delete&id=".$_GET['id']."");
         exit();
     }
 ?>
 <form action="modul/KategoriProses.php" method="POST">
     <input type="hidden" name="proses" value="<?php echo $proses; ?>">
     <input type="hidden" name="keyid" value="<?php echo $keyid; ?>">
+    <input type="hidden" name="createdby" value="<?php echo $_SESSION['userlogin']; ?>">
     <div class="row">        
-        <label class="col-md-2">Nama Kategori</label>
+        <label class="col-md-2">Nama Kategori</label>        
         <div class="col-md-5">
             <input type="text" name="namakategori" class="form-control input-sm" value="<?php echo $nama; ?>">
+            <!-- <select name="cmb_nama" class="form-control input-sm">
+                <option value="">--Pilih ... --</option>
+                <option value="Celana" <?php if($nama == "Celana") echo "Selected"; ?>> Celana </option>
+                <option value="Kaos" <?php if($nama == "Kaos") echo "Selected"; ?>> Kaos </option>
+                <option value="Rok" <?php if($nama == "Rok") echo "Selected"; ?>> Rok </option>
+            </select> -->
         </div>
     </div>
     <div class="row">
@@ -78,7 +85,6 @@
             <hr>
             <button type="reset" class="btn btn-sm btn-secondary"><i class="bi bi-x-circle-fill"></i> Batal</button>
             <button type="submit" class="btn btn-sm btn-primary"><i class="bi bi-save-fill"></i> Simpan Data</button>
-            <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Hapus Data</button>
         </div>
     </div>
 </form>

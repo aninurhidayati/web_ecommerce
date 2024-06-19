@@ -1,4 +1,6 @@
 <?php
+require_once("config/koneksidb.php"); 
+require_once("config/general.php");
   /* ini cara menampilkan output */
   //echo "Hello PHP";
   /* ini untuk mengecek versi dari PHP */
@@ -83,23 +85,20 @@
           <div class="col-md-3 pt-4">
             <div class="kategori-title">Kategori Produk</div>
             <div class="subkategori" id="subkategori">
-              <?php
-              //contoh associate array
-              $listcategory = array(
-                array("idkategori" => 1, "nama" => "SWEATER", "link" => "produkategori"),
-                array("idkategori" => 2, "nama" => "SHOES", "link" => "produkategori")
-              );
-              foreach($listcategory as $ct ){
-                  echo '<li><a href="?page=kategoriproduk">'.$ct["nama"].'</a></li>';
-              }
-              ?>
-              
+            <?php
+                $no = 1;
+                $statement_sql = $cn_mysql->prepare("select * from product_category where isactive=1");
+                $statement_sql->execute();
+                $result = $statement_sql->get_result();
+                while($data = $result->fetch_assoc())
+                { echo '<li><a href="?page=kategoriproduk">'.strtoupper($data["category_name"]).'</a></li>'; }
+            ?>
             </div>
           </div>
           <?php } ?>
           <!-- end - left column -->
           <!-- start - main content -->
-          <div class="col-md-9 pt-4">
+          <div class="<?php if(isset($_GET['page']) && $_GET['page'] == "allproduct") echo"col-md-12"; else echo "col-md-9"; ?> pt-4">
             <?php
             if(!isset($_GET['page'])){
               //menyisipkan file eksternal
@@ -169,5 +168,7 @@
     </div>
 
     <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="assets/validasi.js"></script>
   </body>
 </html>
